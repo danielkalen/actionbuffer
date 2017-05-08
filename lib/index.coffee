@@ -1,5 +1,5 @@
 class ActionBuffer
-	@timeoutDefault = 2e3
+	@timeoutDefault = 1e3
 	@buffers = []
 	
 	constructor: (callback, timeout)->
