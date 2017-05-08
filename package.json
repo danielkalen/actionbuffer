@@ -5,11 +5,14 @@
   "main": "index.js",
   "mocha_opts": "-u tdd --compilers coffee:coffee-script/register --slow 1000 --timeout 5000",
   "scripts": {
-    "prepublish": "npm run test",
+    "prepublishOnly": "npm run test && npm run build",
+    "build": "cat lib/index.coffee | coffee -cbs --no-header > browser.js",
     "coverage": "npm run coverage:run && npm run coverage:badge",
-    "coverage:run": "forCoverage=true istanbul cover --dir coverage node_modules/mocha/bin/_mocha -- $npm_package_mocha_opts",
+    "coverage:run": "mocha $npm_package_mocha_opts --require coffee-coverage/register-istanbul; istanbul report",
     "coverage:badge": "badge-gen -d .config/badges/coverage",
-    "test": "mocha $npm_package_mocha_opts"
+    "test": "npm run test:node && npm run test:browser",
+    "test:node": "mocha $npm_package_mocha_opts",
+    "test:browser": "electron-mocha $npm_package_mocha_opts --renderer test/test.coffee"
   },
   "author": "danielkalen",
   "repository": {
@@ -19,9 +22,12 @@
   "license": "ISC",
   "devDependencies": {
     "badge-gen": "^1.0.2",
-    "bluebird": "^3.5.0",
     "chai": "^3.5.0",
+    "coffee-coverage": "^2.0.1",
     "coffee-script": "^1.12.5",
+    "electron": "^1.6.6",
+    "electron-mocha": "^3.4.0",
+    "istanbul": "^0.4.5",
     "mocha": "^3.3.0"
   },
   "dependencies": {
