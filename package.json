@@ -1,0 +1,30 @@
+{
+  "name": "actionbuffer",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "mocha_opts": "-u tdd --compilers coffee:coffee-script/register --slow 1000 --timeout 5000",
+  "scripts": {
+    "prepublish": "npm run test",
+    "coverage": "npm run coverage:run && npm run coverage:badge",
+    "coverage:run": "forCoverage=true istanbul cover --dir coverage node_modules/mocha/bin/_mocha -- $npm_package_mocha_opts",
+    "coverage:badge": "badge-gen -d .config/badges/coverage",
+    "test": "mocha $npm_package_mocha_opts"
+  },
+  "author": "danielkalen",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danielkalen/actionbuffer"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "badge-gen": "^1.0.2",
+    "bluebird": "^3.5.0",
+    "chai": "^3.5.0",
+    "coffee-script": "^1.12.5",
+    "mocha": "^3.3.0"
+  },
+  "dependencies": {
+    "coffee-register": "0.0.1"
+  }
+}
