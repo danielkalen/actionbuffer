@@ -1,7 +1,7 @@
 {
   "name": "actionbuffer",
   "version": "0.0.1",
-  "description": "",
+  "description": "Push elements into a queue and invoke a callback with the queued elements after a timeout",
   "main": "index.js",
   "mocha_opts": "-u tdd --compilers coffee:coffee-script/register --slow 1000 --timeout 5000",
   "scripts": {
